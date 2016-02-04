@@ -9,8 +9,10 @@
 		<!-- create unordered list for task that are submitted 
 			need check boxes -->
 		<ul>
-			<li ng-repeat="task in tasks">{{ task }}</li>
-			<button ng-click="removeTask(task)">x</button>
+			<li ng-repeat="task in tasks">
+				{{ task }}
+				<button ng-click="removeTask(removedTask)">x</button>
+			</li>
 		</ul>	
 	</div>
 	<div>
