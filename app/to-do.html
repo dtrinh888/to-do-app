@@ -2,19 +2,23 @@
 	<form ng-submit="submitTask()">
 		<!-- task input with submit button -->
 		<label>Task: </label>
-		<input type="text" placeholder="Enter Task" ng-model="task" required>
+		<input type="text" placeholder="Enter Task" ng-model="enteredTask" required>
 		<button>Submit</button>
 	</form>
 	<div>
 		<!-- create unordered list for task that are submitted 
 			need check boxes -->
 		<ul>
-			<li>{{ task }}</li>
+			<li ng-repeat="task in tasks">{{ task }}</li>
+			<button ng-click="removeTask(task)">x</button>
 		</ul>	
 	</div>
 	<div>
-		<button><!-- complete button --></button>
-		<button><!-- remove button --></button>
-		<button><!-- reset button --></button>
+		<!-- complete button -->
+		<button>Complete</button>
+		<!-- remove button -->
+		<button>Remove</button>
+		<!-- reset button -->
+		<button>Reset</button>
 	</div>
 </div>

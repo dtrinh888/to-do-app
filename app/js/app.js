@@ -1,13 +1,11 @@
 angular.module('toDoApp', [])
 	.controller('toDoCtrl', function($scope){
 		//set $scope variables
-		$scope.task = '';
+		$scope.tasks = [];
 		$scope.submitTask = function(){
-			if($scope.task){
-
-			}
+			$scope.tasks.unshift($scope.enteredTask); 
+			$scope.enteredTask = '';
 		};
-		console.log('a',$scope.task);
 	})
 	.factory('toDoFactory', function(){
 		//function to submit task
