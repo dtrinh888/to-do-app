@@ -7,6 +7,7 @@ angular.module('toDoApp', [])
 			$scope.enteredTask = '';
 		};
 		$scope.removeTask = toDoFactory.removeTask;
+		$scope.clearTasks = toDoFactory.clearTasks;
 	})
 	.factory('toDoFactory', ['$http', function($http){
 		//function to submit task
@@ -19,6 +20,9 @@ angular.module('toDoApp', [])
 			removeTask: function(task) {
 				var i = toDo.tasks.indexOf(task);
 				toDo.tasks.splice(i, 1);
+			},
+			clearTasks: function(){
+				toDo.tasks.length = 0;
 			}
 		};
 		//function to complete task
