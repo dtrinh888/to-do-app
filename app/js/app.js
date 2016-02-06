@@ -8,6 +8,7 @@ angular.module('toDoApp', [])
 		};
 		$scope.removeTask = toDoFactory.removeTask;
 		$scope.clearTasks = toDoFactory.clearTasks;
+		$scope.removeTasks = toDoFactory.removeTasks;
 	})
 	.factory('toDoFactory', ['$http', function($http){
 		//function to submit task
@@ -17,17 +18,27 @@ angular.module('toDoApp', [])
 			submitTask: function(task){
 				toDo.tasks.unshift(task);
 			},
+			//function to remove task
 			removeTask: function(task) {
 				var i = toDo.tasks.indexOf(task);
 				toDo.tasks.splice(i, 1);
 			},
+			//function to complete task
+			completeTask: function(){
+
+			},
+			//function to clear task list
 			clearTasks: function(){
 				toDo.tasks.length = 0;
+			},
+			removeTasks: function(){
+				angular.forEach(toDo.tasks, function(task, index){
+					if(task.selected) {
+						toDo.tasks.splice(index, 1);	
+					}
+				});
 			}
-		};
-		//function to complete task
-		//function to remove task
-		//function to reset task
+		};	
 		return toDo;
 	}])
 	.directive('toDo', function(){

@@ -1,26 +1,26 @@
 <div ng-controller="toDoCtrl">
-	<form ng-submit="submitTask()">
+	<form ng-submit="submitTask()" class="task-form text-center">
 		<!-- task input with submit button -->
 		<label>Task: </label>
 		<input type="text" placeholder="Enter Task" ng-model="enteredTask" required>
 		<button>Submit</button>
 	</form>
-	<div>
+	<div class="task-list text-left" ng-hide="tasks.length < 1">
 		<!-- create unordered list for task that are submitted 
 			need check boxes -->
 		<ul>
 			<li ng-repeat="task in tasks">
-				{{ task }}
-				<button ng-click="removeTask()">x</button>
+				<input type="checkbox" value=""><span class="task-input">{{ task }}</span>
+				<button ng-click="removeTask()" class="rmv-btn">x</button>
 			</li>
 		</ul>	
 	</div>
-	<div>
+	<div class="buttons">
 		<!-- complete button -->
 		<button>Complete</button>
 		<!-- remove button -->
-		<button>Remove</button>
+		<button ng-model="task.selected" ng-click="removeTasks()">Remove</button>
 		<!-- reset button -->
-		<button ng-click="clearTasks()">Reset</button>
+		<button ng-click="clearTasks()">Clear</button>
 	</div>
 </div>

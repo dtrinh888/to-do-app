@@ -1,0 +1,27 @@
+.task-form {
+	padding-bottom: 10px;
+}
+.to-do {
+	width: 500px;
+	margin: 0 auto;
+}
+.task-list {
+	padding-top: 10px;
+	width: 250px;
+	margin: 10px auto;
+	border: 2px solid black;
+}
+.task-list ul{
+	list-style-type: none;
+}
+.task-input {
+	padding-left: 10px;
+	font-size: 20px;
+}
+.rmv-btn {
+	height: 22px;
+}
+.buttons {
+	padding-top: 20px;
+}
+
