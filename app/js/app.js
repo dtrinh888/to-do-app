@@ -15,13 +15,21 @@ angular.module('toDoApp', [])
 		var toDo = {
 			tasks: [],
 			enteredTask: '',
+			counter: 1,
 			submitTask: function(task){
-				toDo.tasks.unshift(task);
+				toDo.tasks.unshift({text: task, selected: false, id: toDo.counter});
+				toDo.counter++;
 			},
 			//function to remove task
 			removeTask: function(task) {
-				var i = toDo.tasks.indexOf(task);
-				toDo.tasks.splice(i, 1);
+				//loop through the task
+				for(var i = 0; i < toDo.tasks.length; i++){
+					//inside loop check if text of task matches			
+					if(toDo.tasks[i].id == task.id){
+						//if text matches mark it to be removed
+						toDo.tasks.splice(i, 1);
+					}
+				}
 			},
 			//function to complete task
 			completeTask: function(){
@@ -32,11 +40,16 @@ angular.module('toDoApp', [])
 				toDo.tasks.length = 0;
 			},
 			removeTasks: function(){
-				angular.forEach(toDo.tasks, function(task, index){
-					if(task.selected) {
-						toDo.tasks.splice(index, 1);	
+				console.log(toDo.tasks);
+				//loop through tasks
+				for(var i = 0; i < toDo.tasks.length; i++){
+					console.log(toDo.tasks[i]);
+					//check each task to see if it is selected
+					if(toDo.tasks[i].selected){
+						//if task is selected remove task
+						toDo.tasks.splice(i, 1);
 					}
-				});
+				}
 			}
 		};	
 		return toDo;

@@ -10,8 +10,8 @@
 			need check boxes -->
 		<ul>
 			<li ng-repeat="task in tasks">
-				<input type="checkbox" value=""><span class="task-input">{{ task }}</span>
-				<button ng-click="removeTask()" class="rmv-btn">x</button>
+				<input type="checkbox" ng-model="task.selected"><span class="task-input">{{ task.text }}</span>
+				<button ng-click="removeTask(task)" class="rmv-btn">x</button>
 			</li>
 		</ul>	
 	</div>
@@ -19,7 +19,7 @@
 		<!-- complete button -->
 		<button>Complete</button>
 		<!-- remove button -->
-		<button ng-model="task.selected" ng-click="removeTasks()">Remove</button>
+		<button ng-click="removeTasks()">Remove</button>
 		<!-- reset button -->
 		<button ng-click="clearTasks()">Clear</button>
 	</div>
