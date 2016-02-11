@@ -9,15 +9,24 @@
 		<!-- create unordered list for task that are submitted 
 			need check boxes -->
 		<ul>
-			<li ng-repeat="task in tasks">
+			<li ng-repeat="task in tasks | filter: {completed: false}">
 				<input type="checkbox" ng-model="task.selected"><span class="task-input">{{ task.text }}</span>
 				<button ng-click="removeTask(task)" class="rmv-btn">x</button>
+				<button ng-click="task.completed = true" class="rmv-btn">x</button>
 			</li>
 		</ul>	
 	</div>
+	<div>
+		<!-- where completed tasks will go -->
+		<ul>
+			<li ng-repeat="task in tasks | filter: {completed: true}">
+				<input type="checkbox" ng-model="task.selected"><span class="task-input">{{ task.text }}</span>
+			</li>
+		</ul>
+	</div>
 	<div class="buttons">
 		<!-- complete button -->
-		<button>Complete</button>
+		<button ng-click="completeTasks()">Complete</button>
 		<!-- remove button -->
 		<button ng-click="removeTasks()">Remove</button>
 		<!-- reset button -->

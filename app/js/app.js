@@ -9,6 +9,7 @@ angular.module('toDoApp', [])
 		$scope.removeTask = toDoFactory.removeTask;
 		$scope.clearTasks = toDoFactory.clearTasks;
 		$scope.removeTasks = toDoFactory.removeTasks;
+		$scope.completeTasks = toDoFactory.completeTasks;
 	})
 	.factory('toDoFactory', ['$http', function($http){
 		//function to submit task
@@ -17,7 +18,7 @@ angular.module('toDoApp', [])
 			enteredTask: '',
 			counter: 1,
 			submitTask: function(task){
-				toDo.tasks.unshift({text: task, selected: false, id: toDo.counter});
+				toDo.tasks.unshift({text: task, selected: false, id: toDo.counter, completed: false});
 				toDo.counter++;
 			},
 			//function to remove task
@@ -32,8 +33,14 @@ angular.module('toDoApp', [])
 				}
 			},
 			//function to complete task
-			completeTask: function(){
-
+			completeTasks: function(){
+				//loop through the task
+				for(var i = 0; i < toDo.tasks.length; i++){
+					if(toDo.tasks[i].selected){
+						toDo.tasks[i].completed = true;
+						toDo.tasks[i].selected = false;
+					} 
+				}
 			},
 			//function to clear task list
 			clearTasks: function(){
@@ -42,7 +49,7 @@ angular.module('toDoApp', [])
 			removeTasks: function(){
 				console.log(toDo.tasks);
 				//loop through tasks
-				for(var i = 0; i < toDo.tasks.length; i++){
+				for(var i = toDo.tasks.length - 1; i >= 0; i--){
 					console.log(toDo.tasks[i]);
 					//check each task to see if it is selected
 					if(toDo.tasks[i].selected){

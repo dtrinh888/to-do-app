@@ -24,4 +24,7 @@
 .buttons {
 	padding-top: 20px;
 }
+.completed-tasks {
+	text-decoration: line-through;
+}
 
