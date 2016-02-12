@@ -3,7 +3,7 @@
 		<!-- task input with submit button -->
 		<label>Task: </label>
 		<input type="text" placeholder="Enter Task" ng-model="enteredTask" required>
-		<button>Submit</button>
+		<button class="sub-btn">Submit</button>
 	</form>
 	<div class="task-list text-left" ng-hide="tasks.length < 1">
 		<!-- create unordered list for task that are submitted 
@@ -12,7 +12,7 @@
 			<li ng-repeat="task in tasks | filter: {completed: false}">
 				<input type="checkbox" ng-model="task.selected"><span class="task-input">{{ task.text }}</span>
 				<button ng-click="removeTask(task)" class="rmv-btn">x</button>
-				<button ng-click="task.completed = true" class="rmv-btn">x</button>
+				<button ng-click="task.completed = true" class="comp-btn">o</button>
 			</li>
 		</ul>	
 	</div>
