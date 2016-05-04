@@ -5,25 +5,51 @@
 		<input type="text" placeholder="Enter Task" ng-model="enteredTask" required>
 		<button class="sub-btn">Submit</button>
 	</form>
-	<div class="task-list text-left" ng-hide="tasks.length < 1">
+	<div class="panel panel-default">
 		<!-- create unordered list for task that are submitted 
 			need check boxes -->
-		<ul>
-			<li ng-repeat="task in tasks | filter: {completed: false}">
-				<input type="checkbox" ng-model="task.selected"><span class="task-input">{{ task.text }}</span>
-				<button ng-click="removeTask(task)" class="rmv-btn">x</button>
-				<button ng-click="task.completed = true" class="comp-btn">o</button>
-			</li>
-		</ul>	
+		<div class="panel-heading">
+			<h2>To Do</h2>
+		</div>	
+		<div class="panel-body">		
+			<ul ng-hide="tasks.length < 1">
+				<li ng-repeat="task in tasks | filter: {completed: false}">   
+					<div class="input-group">
+						<div class="input-group-addon">  
+							<input type="checkbox" ng-model="task.selected">
+							<span class="task-input">
+								{{ task.text }}
+							</span>
+							<button ng-click="removeTask(task)" class="glyphicon glyphicon-trash"></button>
+							<button ng-click="task.completed = true" class="glyphicon glyphicon-ok"></button>
+						</div>
+					</div>
+				</li>
+			</ul>		
+		</div>
 	</div>
-	<div>
+	<div class="panel panel-default">
 		<!-- where completed tasks will go -->
-		<ul>
-			<li ng-repeat="task in tasks | filter: {completed: true}">
-				<input type="checkbox" ng-model="task.selected"><span class="task-input">{{ task.text }}</span>
-			</li>
-		</ul>
+		<div class="panel-heading">
+			<h2>Completed</h2>
+		</div>
+		<div class="panel-body">
+			<ul ng-hide="tasks.length < 1">
+				<li ng-repeat="task in tasks | filter: {completed: true}">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<input type="checkbox" ng-model="task.selected">
+							<span class="task-input">
+								{{ task.text }}
+							</span>
+							<button ng-click="removeTask(task)" class="glyphicon glyphicon-trash"></button>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
+
 	<div class="buttons">
 		<!-- complete button -->
 		<button ng-click="completeTasks()">Complete</button>
@@ -32,4 +58,5 @@
 		<!-- reset button -->
 		<button ng-click="clearTasks()">Clear</button>
 	</div>
+
 </div>
