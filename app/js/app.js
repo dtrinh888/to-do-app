@@ -12,6 +12,16 @@ angular.module('toDoApp', [])
 		$scope.completeTasks = toDoFactory.completeTasks;
 		$scope.selectAll = toDoFactory.selectAll;
 		$scope.selectedAll = toDoFactory.selectedAll;
+		$scope.selectAll = function(){
+			if ($scope.selectedAll){
+				$scope.selectedAll = true;
+			} else {
+				$scope.selectedAll = false;
+			}
+			angular.forEach($scope.tasks, function(task){
+				task.selected = $scope.selectedAll;
+			});
+		};
 	})
 	.factory('toDoFactory', ['$http', function($http){
 		//function to submit task
@@ -68,7 +78,7 @@ angular.module('toDoApp', [])
 					toDo.selectedAll = false;
 				}
 				angular.forEach(toDo.tasks, function(task){
-					task.selected = toDo.selectedAll;			
+					task.selected = toDo.selectedAll;
 				});
 			}
 		};	
