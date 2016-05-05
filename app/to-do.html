@@ -11,24 +11,24 @@
 	</form>
 	</div>
 	<div class="panel panel-default">
-		<!-- create unordered list for task that are submitted 
+		<!-- create unordered list for task that are submitted
 			need check boxes -->
 		<div class="panel-heading">
 			<h2>To Do</h2>
-		</div>	
-		<div class="panel-body">		
+		</div>
+		<div class="panel-body">
 			<ul >
 				<li>
 					<div class=" col-md-1">
-						<input type="checkbox" ng-model="selectedAll" ng-click="selectAll()">
+						<input id="master-box" type="checkbox" ng-model="todo.allSelected" ng-change="masterToggle()">
 					</div>
 					<div class="">
 						Select All
-					</div> 
+					</div>
 				</li>
-				<li ng-repeat="task in tasks | filter: {completed: false}" ng-hide="tasks.length < 1">   
+				<li ng-repeat="task in tasks | filter: {completed: false}" ng-hide="tasks.length < 1">
 					<div class="input-group">
-						<div class="input-group-addon">  
+						<div class="input-group-addon">
 							<input type="checkbox" ng-model="task.selected">
 							<span class="task-input">
 								{{ task.text }}
@@ -38,7 +38,7 @@
 						</div>
 					</div>
 				</li>
-			</ul>		
+			</ul>
 		</div>
 	</div>
 	<div class="panel panel-default">
