@@ -10,6 +10,8 @@ angular.module('toDoApp', [])
 		$scope.clearTasks = toDoFactory.clearTasks;
 		$scope.removeTasks = toDoFactory.removeTasks;
 		$scope.completeTasks = toDoFactory.completeTasks;
+		$scope.selectAll = toDoFactory.selectAll;
+		$scope.selectedAll = toDoFactory.selectedAll;
 	})
 	.factory('toDoFactory', ['$http', function($http){
 		//function to submit task
@@ -17,6 +19,7 @@ angular.module('toDoApp', [])
 			tasks: [],
 			enteredTask: '',
 			counter: 1,
+			selectedAll: false,
 			submitTask: function(task){
 				toDo.tasks.unshift({text: task, selected: false, id: toDo.counter, completed: false});
 				toDo.counter++;
@@ -57,6 +60,16 @@ angular.module('toDoApp', [])
 						toDo.tasks.splice(i, 1);
 					}
 				}
+			},
+			selectAll: function(){
+				if(toDo.selectedAll) {
+					toDo.selectedAll = true;
+				} else {
+					toDo.selectedAll = false;
+				}
+				angular.forEach(toDo.tasks, function(task){
+					task.selected = toDo.selectedAll;			
+				});
 			}
 		};	
 		return toDo;

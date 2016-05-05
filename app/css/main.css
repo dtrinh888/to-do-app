@@ -28,4 +28,9 @@ ul{
 .completed-tasks {
 	text-decoration: line-through;
 }
-
+.checkbox {
+/*	float: left;*/
+}
+.tasks{
+	/*float: left;*/
+}
