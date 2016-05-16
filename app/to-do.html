@@ -1,14 +1,16 @@
 <div ng-controller="toDoCtrl">
-	<div class="task-input">
-	<form ng-submit="submitTask()" class="task-form text-center">
-		<!-- task input with submit button -->
-		<div class="col-md-9">
-			<input type="text" class="form-control" placeholder="Enter Task" ng-model="enteredTask" required>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center task-form">
+			<form ng-submit="submitTask()">
+				<!-- task input with submit button -->
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Enter Task" ng-model="enteredTask" required>
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</span>
+				</div>
+			</form>
 		</div>
-		<div class="">
-			<button type="submit" class="btn btn-default">Submit</button>
-		</div>
-	</form>
 	</div>
 	<div class="panel panel-default">
 		<!-- create unordered list for task that are submitted 
