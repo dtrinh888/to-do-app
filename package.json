@@ -8,7 +8,7 @@
     "git:rebase": "npm run git:checkout:master && npm run git:rebase:gh-pages && npm run git:push:master && npm run git:checkout:gh-pages",
     "git:checkout:gh-pages": "git checkout gh-pages",
     "git:add": "git add .",
-    "git:commit": "git commit -m 'updated json file'",
+    "git:commit": "git commit -m 'styling todo list portion'",
     "git:push:gh-pages": "git push origin gh-pages",
     "git:checkout:master": "git checkout master",
     "git:rebase:gh-pages": "git rebase gh-pages",

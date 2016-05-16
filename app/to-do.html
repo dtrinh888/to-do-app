@@ -1,6 +1,6 @@
 <div ng-controller="toDoCtrl">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3 text-center task-form">
+		<div class="col-md-6 col-md-offset-3 text-center">
 			<form ng-submit="submitTask()">
 				<!-- task input with submit button -->
 				<div class="input-group">
@@ -12,87 +12,76 @@
 			</form>
 		</div>
 	</div>
-	<div class="panel panel-default">
-		<!-- create unordered list for task that are submitted 
-			need check boxes -->
-		<div class="panel-heading">
-			<h2>To Do</h2>
-		</div>	
-		<div class="panel-body">		
-			<ul >
-				<li>
-					<div class="input-group">
-						<div class="input-group-addon">
-							<div class="col-md-1">
-								<input id="master-box" type="checkbox" ng-model="toDo.allSelected" ng-click="masterToggle()">
-							</div>
-							<div class="">
-								Select All
-							</div> 
-						</div>
-					</div>
-				</li>
-				<li ng-repeat="task in tasks | filter: {completed: false}" ng-hide="tasks.length < 1">   
-					<div class="input-group">
-						<div class="input-group-addon">
-							<div class="col-md-1">  
-								<input type="checkbox" ng-model="task.selected">
-							</div>
-							<span class="task-input">
-								{{ task.text }}
+	<hr>
+	<div class="row">
+		<div class="">
+			<div class="panel panel-default">
+				<!-- create unordered list for task that are submitted 
+					need check boxes -->
+				<div class="panel-heading">
+					To Do List
+					<span class="pull-right">
+						<input id="master-box" type="checkbox" ng-model="toDo.allSelected" ng-click="masterToggle()">
+						<label for="select-all-todo">Select All</label>
+					</span>
+				</div>		
+					<ul class="list-group">
+						<li class="list-group-item" ng-repeat="task in tasks | filter: {completed: false}" ng-hide="tasks.length < 1">   
+							<input type="checkbox" ng-model="task.selected">
+							<label for="">{{ task.text }}</label>
+							<span class="pull-right">
+								<button ng-click="removeTask(task)" class="glyphicon glyphicon-trash"></button>
+								<button ng-click="completeTask(task)" class="glyphicon glyphicon-ok"></button>
 							</span>
-							<button ng-click="removeTask(task)" class="glyphicon glyphicon-trash"></button>
-							<button ng-click="completeTask(task)" class="glyphicon glyphicon-ok"></button>
-						</div>
-					</div>
-				</li>
-			</ul>		
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<!-- where completed tasks will go -->
-		<div class="panel-heading">
-			<h2>Completed</h2>
-		</div>
-		<div class="panel-body">
-			<ul>
-				<li>
-					<div class="input-group">
-						<div class="input-group-addon">
-							<div class="col-md-1">
-								<input id="completed-box" type="checkbox" ng-model="toDo.completedAllSelected" ng-click="completedMasterToggle()">
+						</li>
+						<li class="list-group-item text-center" ng-show="!task.length"></li>
+					</ul>		
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<!-- where completed tasks will go -->
+				<div class="panel-heading">
+					<h2>Completed</h2>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<li>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<div class="col-md-1">
+										<input id="completed-box" type="checkbox" ng-model="toDo.completedAllSelected" ng-click="completedMasterToggle()">
+									</div>
+									<div class="">
+										Select All
+									</div> 
+								</div>
 							</div>
-							<div class="">
-								Select All
-							</div> 
-						</div>
-					</div>
-				</li>
-				<li ng-repeat="task in completedTasks | filter: {completed: true}">
+						</li>
+						<li ng-repeat="task in completedTasks | filter: {completed: true}">
 
-					<div class="input-group">
-						<div class="input-group-addon">
-							<div class="col-md-1">
-								<input type="checkbox" ng-model="task.selected">
-							</div>	
-							<span class="task-input">
-								{{ task.text }}
-							</span>
-							<button ng-click="removeCompletedTask(task)" class="glyphicon glyphicon-trash"></button>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<div class="col-md-1">
+										<input type="checkbox" ng-model="task.selected">
+									</div>	
+									<span class="task-input">
+										{{ task.text }}
+									</span>
+									<button ng-click="removeCompletedTask(task)" class="glyphicon glyphicon-trash"></button>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="buttons">
+				<!-- complete button -->
+				<button class="btn btn-default" ng-click="completeTasks()">Complete</button>
+				<!-- remove button -->
+				<button class="btn btn-default" ng-click="removeTasks()">Remove</button>
+				<!-- reset button -->
+				<button class="btn btn-default" ng-click="clearTasks()">Clear</button>
+			</div>
 	</div>
-
-	<div class="buttons">
-		<!-- complete button -->
-		<button class="btn btn-default" ng-click="completeTasks()">Complete</button>
-		<!-- remove button -->
-		<button class="btn btn-default" ng-click="removeTasks()">Remove</button>
-		<!-- reset button -->
-		<button class="btn btn-default" ng-click="clearTasks()">Clear</button>
-	</div>
-
 </div>
